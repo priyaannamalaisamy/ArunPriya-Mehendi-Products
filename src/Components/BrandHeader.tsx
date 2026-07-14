@@ -1,4 +1,4 @@
-import "../styles/BrandHeader.css";
+import "../Styles/BrandHeader.css";
 
 function BrandHeader() {
   return (
