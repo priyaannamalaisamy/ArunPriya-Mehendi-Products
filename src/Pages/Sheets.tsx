@@ -52,11 +52,9 @@ function Sheets() {
 
   const pricePerSheet = 5;
 
+
   return (
-    <div
-      className="d-flex flex-wrap justify-content-center"
-      style={{ padding: "60px", gap: "50px" }}
-    >
+    <div className="d-flex flex-wrap justify-content-center" style={{ padding: "60px", gap: "50px" }} >
       {sheets.map((sheet) => {
         const totalPrice =
           quantity[sheet.id] * pricePerSheet;
@@ -65,84 +63,132 @@ function Sheets() {
           <div
             className="card shadow"
             style={{ width: "18rem" }}
-            key={sheet.id}
-          >
+            key={sheet.id} >
             <img
               src={sheet.image}
               className="card-img-top"
               alt={sheet.name}
               style={{
                 height: "250px",
-                objectFit: "cover",
-              }}
-            />
+                objectFit: "cover", }}/>
 
             <div className="card-body">
-              <h5 className="card-title">
-                {sheet.name}
-              </h5>
+  <h5 className="card-title">
+    {sheet.name}
+  </h5>
 
-              <label>Number of Sheets</label>
+  <div
+    style={{
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      gap: "12px",
+      margin: "15px 0",
+    }}
+  >
+    <button
+      type="button"
+      onClick={() =>
+        setQuantity({
+          ...quantity,
+          [sheet.id]: Math.max(1, quantity[sheet.id] - 1),
+        })
+      }
+      style={{
+        width: "32px",
+        height: "32px",
+        border: "1px solid #ccc",
+        borderRadius: "50%",
+        background: "#f5f5f5",
+        cursor: "pointer",
+        fontSize: "18px",
+        fontWeight: "bold",
+      }}
+    >
+      -
+    </button>
 
-              <input
-                type="number"
-                className="form-control"
-                min="1"
-                value={quantity[sheet.id]}
-                onChange={(e) =>
-                  setQuantity({
-                    ...quantity,
-                    [sheet.id]: Math.max(
-                      1,
-                      Number(e.target.value)
-                    ),
-                  })
-                }
-              />
+    <span
+      style={{
+        fontSize: "18px",
+        fontWeight: "bold",
+        minWidth: "20px",
+        textAlign: "center",
+      }}
+    >
+      {quantity[sheet.id]}
+    </span>
 
-              <h5 style={{ marginTop: "15px" }}>
-                Price: ₹{totalPrice}
-              </h5>
+    <button
+      type="button"
+      onClick={() =>
+        setQuantity({
+          ...quantity,
+          [sheet.id]: quantity[sheet.id] + 1,
+        })
+      }
+      style={{
+        width: "32px",
+        height: "32px",
+        border: "1px solid #ccc",
+        borderRadius: "50%",
+        background: "#f5f5f5",
+        cursor: "pointer",
+        fontSize: "18px",
+        fontWeight: "bold",
+      }}
+    >
+      +
+    </button>
+  </div>
 
-              <div className="d-flex justify-content-between align-items-center">
-                <button className="btn btn-success">
-                  Buy Now
-                </button>
+  <h5 style={{ marginTop: "15px" }}>
+    Price: ₹{totalPrice}
+  </h5>
 
-                <button
-                  className="btn btn-warning"
-                  onClick={() =>
-                    addToCart({
-                      id: sheet.id,
-                      name: sheet.name,
-                      image: sheet.image,
-                      selectedSize: `${quantity[sheet.id]} Sheets`,
-                      price: totalPrice,
-                    })
-                  }
-                >
-                  Add To Cart
-                </button>
-                <span style={{
-                     fontSize: "28px",
-                     cursor: "pointer",
-                     color: isWishlisted(sheet.id)
-                  ? "deeppink"
-                 : "gray", }}
-                   onClick={() =>  addToWishlist({
-                   id: sheet.id,
-                    name: sheet.name,
-                    image: sheet.image,
-                    selectedSize: `${quantity[sheet.id]} Sheets`,
-                  price: totalPrice, }) }> ♥ </span>
-                  
-              </div>
-            </div>
-          </div>
+  <div className="d-flex justify-content-between align-items-center">
+    <button className="btn btn-success">
+      Buy Now
+    </button>
+
+    <button
+      className="btn btn-warning"
+      onClick={() =>
+        addToCart({
+          id: sheet.id,
+          name: sheet.name,
+          image: sheet.image,
+          selectedSize: `${quantity[sheet.id]} Sheets`,
+          price: totalPrice,
+        })
+      }
+    >
+      Add To Cart
+    </button>
+
+    <span
+      style={{
+        fontSize: "28px",
+        cursor: "pointer",
+        color: isWishlisted(sheet.id) ? "deeppink" : "gray",
+      }}
+      onClick={() =>
+        addToWishlist({
+          id: sheet.id,
+          name: sheet.name,
+          image: sheet.image,
+          selectedSize: `${quantity[sheet.id]} Sheets`,
+          price: totalPrice,
+        })
+      } > ♥ </span>
+  </div>
+</div>
+</div>
         );
       })}
-    </div>
-  );
-}
+      </div>
+
+);
+      }
 
 export default Sheets;

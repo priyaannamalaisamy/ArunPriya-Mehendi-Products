@@ -10,7 +10,7 @@ function Banner() {
         justifyContent: "space-between",
         alignItems: "center",
         backgroundColor: "#F8F5E9",
-        padding: "60px 80px",
+        padding: "40px 20px",
         minHeight:"80vh",
         boxSizing:"border-box"
       }}>
@@ -42,10 +42,10 @@ function Banner() {
       </div>
 
       {/* Right Side */}
-      <div style={{ width: "45%", textAlign: "center" }}>
+      <div style={{ width: "45%", textAlign: "center",overflow:"hidden" }}>
         <img src={bannerImage} alt="Henna Banner"
           style={{
-            width: "200%",
+            width: "100%",
             maxWidth: "600px",
             height:"auto",
             borderRadius: "20px",

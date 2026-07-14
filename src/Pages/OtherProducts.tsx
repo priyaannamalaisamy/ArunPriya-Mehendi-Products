@@ -170,22 +170,32 @@ function OtherProducts() {
                 {product.name}
               </h5>
 
-              <label>Quantity</label>
+              <div className="d-flex justify-content-center align-items-center gap-3 mt-3 mb-3">
+             <button  className="btn btn-outline-secondary" onClick={() =>
+            setQuantity({
+            ...quantity,
+          [product.id]: Math.max(1, productQuantity - 1),
+      }) } > -</button>
 
-              <input
-                type="number"
-                className="form-control"
-                min="1"
-                value={productQuantity}
-                onChange={(e) =>
-                  setQuantity({
-                    ...quantity,
-                    [product.id]: Math.max(
-                      1,
-                      Number(e.target.value)
-                    ),
-                  })
-                } />
+  <span
+    style={{
+      fontSize: "18px",
+      fontWeight: "bold",
+      minWidth: "30px",
+      textAlign: "center",
+    }} > {productQuantity}</span>
+
+  <button
+    className="btn btn-outline-secondary"
+    onClick={() =>
+      setQuantity({
+        ...quantity,
+        [product.id]: productQuantity + 1,
+      })
+    } > + </button>
+</div>
+
+
 
               <h5 style={{ marginTop: "15px" }}>
                 Price: ₹{totalPrice}
@@ -196,7 +206,16 @@ function OtherProducts() {
                   Buy Now
                 </button>
 
-                 <button className="btn" style={{
+                <button className="btn btn-warning" onClick={() =>addToCart({
+                      id: product.id,
+                      name: product.name,
+                      image: product.image,
+                      selectedSize: `${productQuantity} Quantity`,
+                      price: totalPrice,
+                    })
+                  }> Add To Cart </button>
+
+                  <button className="btn" style={{
                      fontSize: "25px",
                     color: isWishlisted(product.id)
                     ? "deeppink"
@@ -208,14 +227,6 @@ function OtherProducts() {
                     selectedSize: `${productQuantity} Quantity`,
                      price: totalPrice,
                      }) }> ♥</button>
-                <button className="btn btn-warning" onClick={() =>addToCart({
-                      id: product.id,
-                      name: product.name,
-                      image: product.image,
-                      selectedSize: `${productQuantity} Quantity`,
-                      price: totalPrice,
-                    })
-                  }> Add To Cart </button>
                   
               </div>
             </div>
