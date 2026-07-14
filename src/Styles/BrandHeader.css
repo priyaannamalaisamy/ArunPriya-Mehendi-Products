@@ -1,0 +1,21 @@
+.brand-header {
+  background: linear-gradient(135deg, #556b2f, #6b8e23);
+  color: white;
+  text-align: center;
+  padding: 25px 0;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2);
+  /* position: "fixed"; */
+  width: "100%";
+  
+}
+
+.brand-header h1 {
+  font-size: 40px;
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.brand-header p {
+  font-size: 18px;
+  opacity: 0.9;
+}
