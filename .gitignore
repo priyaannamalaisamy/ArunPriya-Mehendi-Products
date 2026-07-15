@@ -22,3 +22,9 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+node_modules/
+henna-web/node_modules/
+henna-api/node_modules/
+
+.env
