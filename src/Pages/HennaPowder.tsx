@@ -29,7 +29,7 @@ function HennaPowder() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/products/henna")
+    fetch("https://mehendi-backend-edt5.onrender.com/api/products/henna")
       .then((response) => response.json())
       .then((data) => {
         setHennaData(data);
