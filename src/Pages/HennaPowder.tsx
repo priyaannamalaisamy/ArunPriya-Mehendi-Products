@@ -29,21 +29,24 @@ function HennaPowder() {
   };
 
   useEffect(() => {
-      fetch("https://mehendi-backend-nro8.onrender.com/api/products/henna")
-      .then((response) => response.json())
-      .then((data) => {
-        setHennaData(data);
+  fetch("https://mehendi-backend-nro8.onrender.com/api/products/henna")
+    .then((response) => response.json())
+    .then((data) => {
+      console.log("Henna Data:", data);
+      alert(JSON.stringify(data));
 
-        setSelectedWeight({
-          "1 Filter": "100 gram",
-          "3 Filter": "100 gram",
-          "5 Filter": "100 gram",
-        });
-      })
-      .catch((error) => {
-        console.log("API Error:", error);
+      setHennaData(data);
+
+      setSelectedWeight({
+        "1 Filter": "100 gram",
+        "3 Filter": "100 gram",
+        "5 Filter": "100 gram",
       });
-  }, []);
+    })
+    .catch((error) => {
+      console.error("API Error:", error);
+    });
+}, []);
 
   const filters = ["1 Filter", "3 Filter", "5 Filter"];
 
