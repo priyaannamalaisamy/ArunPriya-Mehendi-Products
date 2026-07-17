@@ -35,7 +35,7 @@ function Oils() {
   };
 
   useEffect(() => {
-    fetch("https://mehendi-backend-edt5.onrender.com/api/products/oils")
+       fetch("https://your-render-backend.onrender.com/api/products/oils")
       .then((response) => response.json())
       .then((data) => {
         setOilData(data);
