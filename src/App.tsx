@@ -11,6 +11,7 @@ import Cart from './Pages/Cart';
 import BrandHeader from "./Components/BrandHeader";
 import Nav from "./Components/Nav";
 import Wishlist from "./Pages/Wishlist";
+import Order from "./Pages/Order";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
         <Route path="/other-products" element={<OtherProducts />} />
         <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/order" element={<Order />} />
 
         
       </Routes>

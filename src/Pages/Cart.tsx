@@ -1,7 +1,9 @@
 import { useCart } from "../Context/CardContext";
+import { Navigate, useNavigate } from "react-router-dom";
 
 function Cart() {
-  const { cart } = useCart();
+  const { cart,removeFromCart } = useCart();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -14,9 +16,17 @@ function Cart() {
         cart.map((product: any, index: number) => (
           <div
             className="card shadow"
-            style={{ width: "18rem" }}
-            key={index}
+            style={{ width: "18rem",position: "relative" }}
+            key={product.id}
           >
+
+            {/* Remove X */} 
+            <button onClick={() => removeFromCart(product.id)} 
+            style={{
+               position: "absolute",
+               top: "8px", right: "8px", width: "32px", height: "32px", borderRadius: "50%", border: "none", background: "white", fontSize: "22px", fontWeight: "bold", cursor: "pointer", zIndex: 2, boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+              }} > × </button>
+
             <img
               src={product.image}
               className="card-img-top"
@@ -31,7 +41,8 @@ function Cart() {
 
               <h5>Price: ₹{product.price}</h5>
 
-              <button className="btn btn-success">
+              <button className="btn btn-success"
+              onClick={()=>navigate("/Order")}>
                 Buy Now
               </button>
             </div>

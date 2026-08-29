@@ -1,9 +1,11 @@
 import { useWishlist } from "../Context/WishlistContext";
 import { useCart } from "../Context/CardContext";
+import { useNavigate } from "react-router-dom";
 
 function Wishlist() {
-  const { wishlist } = useWishlist();
+  const { wishlist, removeFromWishlist } = useWishlist();
   const { addToCart } = useCart();
+  const navigate = useNavigate();
 
   return (
     <div
@@ -16,9 +18,29 @@ function Wishlist() {
         wishlist.map((product) => (
           <div
             className="card shadow"
-            style={{ width: "18rem" }}
+            style={{ width: "18rem",position: "relative", }}
             key={product.id}
           >
+
+            <button
+              onClick={() => removeFromWishlist(product.id)}
+              style={{
+                position: "absolute",
+                top: "8px",
+                right: "8px",
+                width: "32px",
+                height: "32px",
+                borderRadius: "50%",
+                border: "none",
+                background: "white",
+                fontSize: "22px",
+                fontWeight: "bold",
+                cursor: "pointer",
+                zIndex: 2,
+                boxShadow: "0 2px 6px rgba(0,0,0,0.2)",
+              }}
+            >×</button>
+
             <img
               src={product.image}
               className="card-img-top"
@@ -46,7 +68,8 @@ function Wishlist() {
                 className="d-flex justify-content-between"
                 style={{ marginTop: "20px" }}
               >
-                <button className="btn btn-success">
+                <button className="btn btn-success"
+                onClick={()=>navigate("/Order")}>
                   Buy Now
                 </button>
 

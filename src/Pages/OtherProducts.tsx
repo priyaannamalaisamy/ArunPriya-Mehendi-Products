@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useCart } from "../Context/CardContext";
 import { useWishlist } from "../Context/WishlistContext";
+import { useNavigate } from "react-router-dom";
 
 import Pin038 from "../assets/41tVe2LhSWL._AC_UF350,350_QL80_.jpg";
 import Pin05 from "../assets/il_340x270.1680642667_7l76.webp";
@@ -23,6 +24,7 @@ import machine from "../assets/ygnqg_512.avif";
 
 
 function OtherProducts() {
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const { addToWishlist, isWishlisted } = useWishlist();
 
@@ -202,7 +204,8 @@ function OtherProducts() {
               </h5>
 
               <div className="d-flex justify-content-between">
-                <button className="btn btn-success">
+                <button className="btn btn-success"
+                onClick={()=>navigate("/Order")}>
                   Buy Now
                 </button>
 

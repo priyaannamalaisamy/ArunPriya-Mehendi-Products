@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useCart } from "../Context/CardContext";
 import { useWishlist } from "../Context/WishlistContext";
+import { useNavigate } from "react-router-dom";
 
 import cellophane from "../assets/51GrY6RFHUL._AC_UF894,1000_QL80_.jpg";
 import frozen from "../assets/71MRfkVIphL.jpg";
@@ -9,6 +10,7 @@ import transperant from "../assets/images.jpg";
 import preCut from "../assets/img_2079-scaled.jpeg";
 
 function Sheets() {
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const { addToWishlist, isWishlisted } = useWishlist();
 
@@ -147,7 +149,8 @@ function Sheets() {
   </h5>
 
   <div className="d-flex justify-content-between align-items-center">
-    <button className="btn btn-success">
+    <button className="btn btn-success"
+    onClick={()=>navigate("/Order")}>
       Buy Now
     </button>
 

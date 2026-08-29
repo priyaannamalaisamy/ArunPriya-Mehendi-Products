@@ -1,4 +1,9 @@
-import { createContext, useContext, useState, type ReactNode,} from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  type ReactNode,
+} from "react";
 
 type WishlistItem = {
   id: string | number;
@@ -12,6 +17,7 @@ type WishlistContextType = {
   wishlist: WishlistItem[];
   addToWishlist: (item: WishlistItem) => void;
   isWishlisted: (id: string | number) => boolean;
+  removeFromWishlist: (id: string | number) => void;
 };
 
 const WishlistContext = createContext<
@@ -41,8 +47,19 @@ export function WishlistProvider({
     });
   };
 
+  // Remove from Wishlist
+  const removeFromWishlist = (id: string | number) => {
+    setWishlist((previousWishlist) =>
+      previousWishlist.filter(
+        (product) => product.id !== id
+      )
+    );
+  };
+
   const isWishlisted = (id: string | number) => {
-    return wishlist.some((product) => product.id === id);
+    return wishlist.some(
+      (product) => product.id === id
+    );
   };
 
   return (
@@ -51,6 +68,7 @@ export function WishlistProvider({
         wishlist,
         addToWishlist,
         isWishlisted,
+        removeFromWishlist,
       }}
     >
       {children}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../Context/CardContext";
 import { useWishlist } from "../Context/WishlistContext";
+import { useNavigate } from "react-router-dom";
 
 import product1 from "../assets/ChatGPT Image Jul 8, 2026, 09_13_26 PM.png";
 import product2 from "../assets/Untitleddesign_36.webp";
@@ -17,7 +18,8 @@ function HennaPowder() {
   const [hennaData, setHennaData] = useState<HennaData[]>([]);
   const { addToCart } = useCart();
   const { addToWishlist, isWishlisted } = useWishlist();
-
+  const navigate = useNavigate();
+  
   const [selectedWeight, setSelectedWeight] = useState<{
     [key: string]: string;
   }>({});
@@ -33,7 +35,6 @@ function HennaPowder() {
     .then((response) => response.json())
     .then((data) => {
       console.log("Henna Data:", data);
-      alert(JSON.stringify(data));
 
       setHennaData(data);
 
@@ -94,9 +95,20 @@ function HennaPowder() {
               </h5>
 
               <div className="d-flex justify-content-between">
-                <button className="btn btn-success">
-                  Buy Now
-                </button>
+                <button className="btn btn-success"
+                onClick={() => {
+    if (!selectedProduct) return;
+
+    navigate("/order", {
+      state: {
+        id: selectedProduct.id,
+        name: `${filter} Henna Powder`,
+        image: images[filter],
+        selectedSize: selectedProduct.weight,
+        price: selectedProduct.price,
+      },
+      });
+       }}> Buy Now </button>
 
                 <button className="btn btn-warning" onClick={() => {
                     if (!selectedProduct) return;

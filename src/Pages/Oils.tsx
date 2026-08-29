@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useCart } from "../Context/CardContext";
 import { useWishlist } from "../Context/WishlistContext";
+import { useNavigate } from "react-router-dom";
 
 import oliveOil from "../assets/61VrlnM3gDL._AC_UF894,1000_QL80_.jpg";
 import teaTreeOil from "../assets/fresh-tea-tree-twig-essential-oil.jpg";
@@ -18,6 +19,7 @@ type OilData = {
 };
 
 function Oils() {
+  const navigate = useNavigate();
   const [oilData, setOilData] = useState<OilData[]>([]);
   const [selectedSize, setSelectedSize] = useState<{
     [key: string]: string;
@@ -110,9 +112,20 @@ function Oils() {
               </h5>
 
               <div className="d-flex justify-content-between">
-                <button className="btn btn-success">
-                  Buy Now
-                </button>
+                <button className="btn btn-success"
+                onClick={() => {
+    if (!selectedProduct) return;
+
+    navigate("/order", {
+      state: {
+        id: selectedProduct.id,
+        name: selectedProduct.name,
+        image: selectedProduct.image,
+        selectedSize: selectedProduct.size,
+        price: selectedProduct.price,
+      },
+       });
+       }}> Buy Now </button>
 
                 <button
                   className="btn btn-warning"

@@ -1,6 +1,6 @@
 import { useCart } from "../Context/CardContext";
 import { useWishlist } from "../Context/WishlistContext";
-
+import { useNavigate } from "react-router-dom";
 import beginnerImg from "../assets/dt8ez_512.avif";
 import mediumImg from "../assets/350-henna-starter-set-for-beginners-diy-organic-cone-making-kit-original-imahdx4dy3g7feue.webp";
 
@@ -10,6 +10,7 @@ import professional3 from "../assets/r7muq_512.avif";
 import professional4 from "../assets/ygnqg_512.avif";
 
 function Kits() {
+  const navigate = useNavigate();
   const { addToCart } = useCart();
   const { addToWishlist, isWishlisted } = useWishlist();
 
@@ -33,7 +34,8 @@ function Kits() {
           <h5>Price: ₹250</h5>
 
           <div className="d-flex justify-content-between align-items-center">
-            <button className="btn btn-success">
+            <button className="btn btn-success"
+            onClick={()=>navigate("/Order")}>
               Buy Now
             </button>
 
@@ -91,7 +93,8 @@ function Kits() {
           <h5>Price: ₹350</h5>
 
           <div className="d-flex justify-content-between align-items-center">
-            <button className="btn btn-success">
+            <button className="btn btn-success"
+            onClick={()=>navigate("/Order")}>
               Buy Now
             </button>
 
@@ -192,7 +195,8 @@ function Kits() {
           <h5>Price: ₹1000</h5>
 
           <div className="d-flex justify-content-between align-items-center">
-            <button className="btn btn-success">
+            <button className="btn btn-success"
+            onClick={() => navigate("/order")}>
               Buy Now
             </button>
 
