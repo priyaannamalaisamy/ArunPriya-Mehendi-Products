@@ -1,5 +1,5 @@
 import { useCart } from "../Context/CardContext";
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Cart() {
   const { cart,removeFromCart } = useCart();
@@ -13,7 +13,7 @@ function Cart() {
       {cart.length === 0 ? (
         <h3>Your Cart is Empty</h3>
       ) : (
-        cart.map((product: any, index: number) => (
+        cart.map((product: any) => (
           <div
             className="card shadow"
             style={{ width: "18rem",position: "relative" }}
